@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIGCleaner Documentation - AI Text Processing & AIGC Detection Platform</title>
-    <meta name="description" content="AIGCleaner developer documentation. AI-powered text processing platform for AIGC detection, text rewriting, and academic enhancement. API reference and quick start guide.">
-    <meta name="keywords" content="AIGCleaner, AI text processing, AIGC detection, text rewriting, academic writing, API">
+    <title>AIGCleaner 嘎嘎降AI - 权威AIGC检测率降至20%以下 | 覆盖知网维普万方等9大平台</title>
+    <meta name="description" content="AIGCleaner 嘎嘎降AI，权威平台AIGC率保证降至20%以下。覆盖知网、维普、万方等9大检测平台，超十亿文本实测达标率99.26%，已适配知网2026年最新算法。超过20%全额退款。">
+    <meta name="keywords" content="AIGCleaner, 嘎嘎降AI, 降AI, 降AIGC, AIGC检测, 知网检测, 维普检测, 万方检测, AI降重, 论文降AI">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; line-height: 1.6; color: #24292e; background: #fff; }
         a { color: #e91e8c; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .header { background: linear-gradient(135deg, #e91e8c 0%, #c2185b 100%); color: #fff; padding: 3rem 1.5rem; }
+        .header { background: linear-gradient(135deg, #e91e8c 0%, #c2185b 100%); color: #fff; padding: 3.5rem 1.5rem; }
         .header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .header p { font-size: 1.1rem; opacity: 0.92; max-width: 640px; }
+        .header .subtitle { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem; opacity: 0.95; }
+        .header p { font-size: 1rem; opacity: 0.9; max-width: 680px; }
         .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
         .badge { display: inline-block; background: #fce4f2; color: #e91e8c; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 12px; margin-bottom: 1rem; }
         h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid #eaecef; color: #24292e; }
@@ -21,148 +22,168 @@
         p, li { font-size: 0.95rem; color: #444d56; }
         ul { padding-left: 1.5rem; margin: 0.5rem 0 1rem; }
         li { margin-bottom: 0.35rem; }
-        pre { background: #1e1e2e; color: #cdd6f4; padding: 1.2rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; line-height: 1.5; }
-        code { font-family: 'SF Mono', 'Fira Code', Consolas, monospace; }
-        .inline-code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; color: #e91e8c; }
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
         .card { border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; }
         .card h3 { margin-top: 0; color: #e91e8c; font-size: 1rem; }
         .card p { font-size: 0.88rem; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat { text-align: center; padding: 1.2rem; border: 1px solid #e1e4e8; border-radius: 8px; }
+        .stat .num { font-size: 1.8rem; font-weight: 700; color: #e91e8c; }
+        .stat .label { font-size: 0.85rem; color: #6a737d; margin-top: 0.3rem; }
+        .platform-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+        .platform-tag { background: #fce4f2; color: #c2185b; padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.85rem; font-weight: 500; }
         .cta-box { background: #fdf2f8; border: 1px solid #f9a8d4; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
-        .cta-box a { display: inline-block; background: #e91e8c; color: #fff; padding: 0.6rem 1.5rem; border-radius: 6px; font-weight: 600; margin-top: 0.5rem; }
-        .cta-box a:hover { background: #c2185b; text-decoration: none; }
+        .cta-box a.btn { display: inline-block; background: #e91e8c; color: #fff; padding: 0.6rem 1.5rem; border-radius: 6px; font-weight: 600; margin-top: 0.5rem; }
+        .cta-box a.btn:hover { background: #c2185b; text-decoration: none; }
+        .faq { margin: 1rem 0; }
+        .faq-item { border: 1px solid #e1e4e8; border-radius: 8px; margin-bottom: 0.8rem; padding: 1rem 1.2rem; }
+        .faq-q { font-weight: 600; color: #24292e; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .faq-a { font-size: 0.9rem; color: #444d56; }
+        .note { background: #fdf2f8; border-left: 4px solid #e91e8c; padding: 0.8rem 1rem; margin: 1rem 0; border-radius: 0 4px 4px 0; font-size: 0.9rem; }
         .footer { border-top: 1px solid #eaecef; padding: 2rem 1.5rem; text-align: center; color: #6a737d; font-size: 0.85rem; margin-top: 3rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        th { padding: 0.5rem; text-align: left; border-bottom: 2px solid #e1e4e8; }
+        td { padding: 0.5rem; border-bottom: 1px solid #eaecef; }
         @media (max-width: 600px) {
             .header { padding: 2rem 1rem; }
             .header h1 { font-size: 1.5rem; }
+            .header .subtitle { font-size: 1.1rem; }
             .container { padding: 1.5rem 1rem; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <div style="max-width:860px;margin:0 auto;">
-            <h1>AIGCleaner Documentation</h1>
-            <p>Developer resources for the AI text processing platform. Detect AI-generated content, rewrite text for human-like quality, and enhance academic writing.</p>
+            <h1>AIGCleaner - 嘎嘎降AI</h1>
+            <div class="subtitle">降重 &middot; 降AI / Reduce Plagiarism &middot; Reduce AI Detection</div>
+            <p>权威平台AIGC率保证降至20%以下，覆盖国内外9大检测平台。超十亿文本实测，达标率超过99.26%。已兼容知网2026年2月最新AIGC检测算法。</p>
         </div>
     </div>
 
     <div class="container">
-        <span class="badge">v2.0 Stable</span>
+        <span class="badge">已适配知网2026最新算法</span>
 
-        <h2>Overview</h2>
-        <p>AIGCleaner is an AI-powered text processing platform designed for content creators, academic researchers, and enterprises. It provides APIs for AIGC detection, intelligent text rewriting, and style enhancement. Visit the official platform at <a href="https://aigcleaner.com">aigcleaner.com</a> to explore the full suite of tools.</p>
+        <h2>平台概述 / Platform Overview</h2>
+        <p><a href="https://aigcleaner.com">AIGCleaner（嘎嘎降AI）</a>是一站式AI文本处理平台，专注于将AI生成内容的检测率降至安全线以下。平台覆盖知网、维普、万方、大雅、PaperYY、Master AI、PaperBye、Turnitin、朱雀共9大主流检测平台，一次处理即可全平台达标。</p>
 
-        <h2>Core Features</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3>AIGC Detection</h3>
-                <p>Analyze text to identify AI-generated content patterns with high accuracy. Returns a confidence score and detailed segment-level breakdown.</p>
+        <h2>核心数据 / Key Metrics</h2>
+        <div class="stat-grid">
+            <div class="stat">
+                <div class="num">99.26%</div>
+                <div class="label">达标率（超十亿文本实测）</div>
             </div>
-            <div class="card">
-                <h3>Text Rewriting</h3>
-                <p>Restructure AI-generated text to achieve a natural, human-like writing style while preserving the original meaning and context.</p>
+            <div class="stat">
+                <div class="num">&lt;20%</div>
+                <div class="label">AIGC检测率保证</div>
             </div>
-            <div class="card">
-                <h3>Academic Enhancement</h3>
-                <p>Improve academic papers with proper citation formatting, terminology consistency, and discipline-specific tone adjustments.</p>
+            <div class="stat">
+                <div class="num">9大平台</div>
+                <div class="label">一次处理全覆盖</div>
             </div>
-            <div class="card">
-                <h3>Batch Processing</h3>
-                <p>Process large volumes of text efficiently through the batch API. Supports async operations with webhook callbacks.</p>
+            <div class="stat">
+                <div class="num">2-5分钟</div>
+                <div class="label">处理完成</div>
             </div>
         </div>
 
-        <h2>Quick Start</h2>
-        <p>Get started with AIGCleaner in minutes. First, <a href="https://aigcleaner.com">create an account at aigcleaner.com</a> and obtain your API key from the dashboard.</p>
+        <h2>覆盖检测平台 / Supported Detection Platforms</h2>
+        <p><a href="https://aigcleaner.com">AIGCleaner</a> 一次处理覆盖以下全部检测平台，无需针对不同平台反复调整：</p>
+        <div class="platform-list">
+            <span class="platform-tag">知网 CNKI</span>
+            <span class="platform-tag">维普 VIP</span>
+            <span class="platform-tag">万方 Wanfang</span>
+            <span class="platform-tag">大雅 Daya</span>
+            <span class="platform-tag">PaperYY</span>
+            <span class="platform-tag">Master AI</span>
+            <span class="platform-tag">PaperBye</span>
+            <span class="platform-tag">Turnitin</span>
+            <span class="platform-tag">朱雀 Zhuque</span>
+        </div>
 
-        <h3>Installation</h3>
-<pre><code>pip install aigcleaner-sdk</code></pre>
+        <h2>核心优势 / Core Advantages</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>全平台覆盖</h3>
+                <p>9大检测平台一次到位。不同平台检测算法各不相同，AIGCleaner 的处理策略兼顾所有平台的检测逻辑，一次处理即可通过全部检测。</p>
+            </div>
+            <div class="card">
+                <h3>适配最新算法</h3>
+                <p>已兼容知网2026年2月最新AIGC检测算法。平台持续追踪各检测系统的算法更新，确保处理效果始终有效。</p>
+            </div>
+            <div class="card">
+                <h3>主流AI模型全适配</h3>
+                <p>支持 ChatGPT、Claude、DeepSeek、豆包、千问等主流AI模型生成的内容。无论哪个模型生成的文本，都能有效降低AI检测率。</p>
+            </div>
+            <div class="card">
+                <h3>超过20%退款</h3>
+                <p>处理后检测率超过20%，全额退款。这不是口号——<a href="https://aigcleaner.com">AIGCleaner</a> 用退款承诺为效果背书。</p>
+            </div>
+        </div>
 
-        <h3>Basic Usage</h3>
-<pre><code><span style="color:#89b4fa">from</span> aigcleaner <span style="color:#89b4fa">import</span> AIGClient
+        <h2>使用场景 / Use Cases</h2>
+        <ul>
+            <li><strong>论文写作：</strong>毕业论文、学位论文使用AI辅助写作后，通过 <a href="https://aigcleaner.com">AIGCleaner</a> 处理降低AIGC检测率至安全线内</li>
+            <li><strong>内容创作：</strong>公众号、知乎、博客等平台内容，降低AI痕迹以获得更好的推荐权重</li>
+            <li><strong>平台发布：</strong>各类平台对AI生成内容的审核日趋严格，处理后的内容更容易通过发布审核</li>
+        </ul>
 
-client = AIGClient(api_key=<span style="color:#a6e3a1">"your-api-key"</span>)
-
-<span style="color:#6c7086"># Detect AI-generated content</span>
-result = client.detect(text=<span style="color:#a6e3a1">"Your text content here..."</span>)
-print(f<span style="color:#a6e3a1">"AI probability: {result.score:.2%}"</span>)
-
-<span style="color:#6c7086"># Rewrite text for human-like quality</span>
-rewritten = client.rewrite(
-    text=<span style="color:#a6e3a1">"Your AI-generated text..."</span>,
-    mode=<span style="color:#a6e3a1">"natural"</span>,   <span style="color:#6c7086"># Options: natural, academic, creative</span>
-    strength=<span style="color:#fab387">0.7</span>
-)
-print(rewritten.text)</code></pre>
-
-        <h3>API Endpoint Reference</h3>
-        <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;">
+        <h2>技术特点 / Technical Features</h2>
+        <table>
             <thead>
-                <tr style="border-bottom:2px solid #e1e4e8;text-align:left;">
-                    <th style="padding:0.5rem;">Method</th>
-                    <th style="padding:0.5rem;">Endpoint</th>
-                    <th style="padding:0.5rem;">Description</th>
-                </tr>
+                <tr><th>特性</th><th>说明</th></tr>
             </thead>
             <tbody>
-                <tr style="border-bottom:1px solid #eaecef;">
-                    <td style="padding:0.5rem;"><span class="inline-code">POST</span></td>
-                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/detect</span></td>
-                    <td style="padding:0.5rem;">Detect AIGC content</td>
-                </tr>
-                <tr style="border-bottom:1px solid #eaecef;">
-                    <td style="padding:0.5rem;"><span class="inline-code">POST</span></td>
-                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/rewrite</span></td>
-                    <td style="padding:0.5rem;">Rewrite text</td>
-                </tr>
-                <tr style="border-bottom:1px solid #eaecef;">
-                    <td style="padding:0.5rem;"><span class="inline-code">POST</span></td>
-                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/enhance</span></td>
-                    <td style="padding:0.5rem;">Academic enhancement</td>
-                </tr>
-                <tr>
-                    <td style="padding:0.5rem;"><span class="inline-code">GET</span></td>
-                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/usage</span></td>
-                    <td style="padding:0.5rem;">Check API usage stats</td>
-                </tr>
+                <tr><td>支持格式</td><td>.docx / .txt / .md 三种格式直接上传处理</td></tr>
+                <tr><td>处理速度</td><td>2-5分钟完成，无需长时间等待</td></tr>
+                <tr><td>修改保障</td><td>7天内无限修改，不满意持续优化</td></tr>
+                <tr><td>计费方式</td><td>按量计费，无需订阅，用多少付多少</td></tr>
+                <tr><td>数据安全</td><td>SSL加密传输，不收录不泄露，处理完成后可删除</td></tr>
             </tbody>
         </table>
 
-        <h2>Response Format</h2>
-<pre><code>{
-  <span style="color:#a6e3a1">"status"</span>: <span style="color:#a6e3a1">"success"</span>,
-  <span style="color:#a6e3a1">"data"</span>: {
-    <span style="color:#a6e3a1">"score"</span>: <span style="color:#fab387">0.87</span>,
-    <span style="color:#a6e3a1">"label"</span>: <span style="color:#a6e3a1">"ai_generated"</span>,
-    <span style="color:#a6e3a1">"segments"</span>: [
-      { <span style="color:#a6e3a1">"text"</span>: <span style="color:#a6e3a1">"..."</span>, <span style="color:#a6e3a1">"score"</span>: <span style="color:#fab387">0.92</span>, <span style="color:#a6e3a1">"label"</span>: <span style="color:#a6e3a1">"ai"</span> },
-      { <span style="color:#a6e3a1">"text"</span>: <span style="color:#a6e3a1">"..."</span>, <span style="color:#a6e3a1">"score"</span>: <span style="color:#fab387">0.31</span>, <span style="color:#a6e3a1">"label"</span>: <span style="color:#a6e3a1">"human"</span> }
-    ]
-  },
-  <span style="color:#a6e3a1">"usage"</span>: { <span style="color:#a6e3a1">"characters"</span>: <span style="color:#fab387">1240</span> }
-}</code></pre>
+        <h2>快速开始 / Quick Start</h2>
+        <p>使用 <a href="https://aigcleaner.com">AIGCleaner</a> 只需三步：</p>
+        <ol style="padding-left:1.5rem;margin:0.5rem 0 1rem;">
+            <li style="margin-bottom:0.5rem;color:#444d56;"><strong>上传文档</strong> - 将 .docx / .txt / .md 文件上传到平台</li>
+            <li style="margin-bottom:0.5rem;color:#444d56;"><strong>选择处理模式</strong> - 根据文本类型选择合适的处理方式</li>
+            <li style="margin-bottom:0.5rem;color:#444d56;"><strong>下载结果</strong> - 2-5分钟后下载处理完成的文件，直接提交检测</li>
+        </ol>
 
-        <div class="cta-box">
-            <p style="font-size:1rem;color:#24292e;font-weight:500;">Ready to get started?</p>
-            <p style="font-size:0.9rem;color:#444d56;">Create a free account and start processing text with AIGCleaner today.</p>
-            <a href="https://aigcleaner.com">Sign Up at aigcleaner.com</a>
+        <div class="note">
+            <strong>提示：</strong>处理完成后建议先用一个平台检测确认效果，再正式提交。7天内如果需要微调可以无限修改。
         </div>
 
-        <h2>Rate Limits & Pricing</h2>
-        <p>Free tier includes 10,000 characters per month. For higher limits and advanced features, check the <a href="https://aigcleaner.com">pricing plans at aigcleaner.com</a>.</p>
-        <ul>
-            <li><strong>Free:</strong> 10,000 chars/month, 10 req/min</li>
-            <li><strong>Pro:</strong> 500,000 chars/month, 60 req/min</li>
-            <li><strong>Enterprise:</strong> Custom limits, priority support</li>
-        </ul>
+        <h2>常见问题 / FAQ</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <div class="faq-q">Q: 不同检测平台结果不一样怎么办？</div>
+                <div class="faq-a">A: AIGCleaner 的处理策略覆盖9大平台的检测算法，一次处理全平台达标，无需针对不同平台反复调整。这也是 <a href="https://aigcleaner.com">AIGCleaner</a> 区别于单一平台工具的核心优势。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q: 超过20%退款政策具体怎么执行？</div>
+                <div class="faq-a">A: 如果处理后的文本在目标检测平台的AIGC检测率超过20%，提供检测报告截图即可申请全额退款。退款承诺是 AIGCleaner 对处理效果的硬性保证。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q: 7天无限修改是什么意思？</div>
+                <div class="faq-a">A: 从首次处理开始的7天内，如果对结果不满意，可以不限次数地重新处理和微调，不额外收费。这确保你有充足的时间把文本调整到最佳状态。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q: 我用的是 DeepSeek / 豆包生成的内容，能处理吗？</div>
+                <div class="faq-a">A: 完全可以。AIGCleaner 适配 ChatGPT、Claude、DeepSeek、豆包、千问等所有主流AI模型的输出。不同模型的文本特征不同，平台会针对性处理。</div>
+            </div>
+        </div>
 
-        <h2>Support</h2>
-        <p>For technical questions and bug reports, visit the <a href="https://aigcleaner.com">AIGCleaner support center</a>. We typically respond within 24 hours on business days.</p>
+        <div class="cta-box">
+            <p style="font-size:1.1rem;color:#24292e;font-weight:600;">开始使用 AIGCleaner</p>
+            <p style="font-size:0.9rem;color:#444d56;">按量计费，无需订阅。超过20%全额退款。</p>
+            <a class="btn" href="https://aigcleaner.com">立即访问 aigcleaner.com</a>
+        </div>
     </div>
 
     <div class="footer">
-        <p>AIGCleaner Documentation &middot; <a href="https://aigcleaner.com">aigcleaner.com</a></p>
+        <p>AIGCleaner 嘎嘎降AI &middot; <a href="https://aigcleaner.com">aigcleaner.com</a> &middot; 降重 &middot; 降AI</p>
     </div>
 </body>
 </html>
