@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGCleaner Documentation - AI Text Processing & AIGC Detection Platform</title>
+    <meta name="description" content="AIGCleaner developer documentation. AI-powered text processing platform for AIGC detection, text rewriting, and academic enhancement. API reference and quick start guide.">
+    <meta name="keywords" content="AIGCleaner, AI text processing, AIGC detection, text rewriting, academic writing, API">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; line-height: 1.6; color: #24292e; background: #fff; }
+        a { color: #e91e8c; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .header { background: linear-gradient(135deg, #e91e8c 0%, #c2185b 100%); color: #fff; padding: 3rem 1.5rem; }
+        .header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .header p { font-size: 1.1rem; opacity: 0.92; max-width: 640px; }
+        .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .badge { display: inline-block; background: #fce4f2; color: #e91e8c; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 12px; margin-bottom: 1rem; }
+        h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid #eaecef; color: #24292e; }
+        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+        p, li { font-size: 0.95rem; color: #444d56; }
+        ul { padding-left: 1.5rem; margin: 0.5rem 0 1rem; }
+        li { margin-bottom: 0.35rem; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 1.2rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; line-height: 1.5; }
+        code { font-family: 'SF Mono', 'Fira Code', Consolas, monospace; }
+        .inline-code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; color: #e91e8c; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .card { border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; }
+        .card h3 { margin-top: 0; color: #e91e8c; font-size: 1rem; }
+        .card p { font-size: 0.88rem; }
+        .cta-box { background: #fdf2f8; border: 1px solid #f9a8d4; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+        .cta-box a { display: inline-block; background: #e91e8c; color: #fff; padding: 0.6rem 1.5rem; border-radius: 6px; font-weight: 600; margin-top: 0.5rem; }
+        .cta-box a:hover { background: #c2185b; text-decoration: none; }
+        .footer { border-top: 1px solid #eaecef; padding: 2rem 1.5rem; text-align: center; color: #6a737d; font-size: 0.85rem; margin-top: 3rem; }
+        @media (max-width: 600px) {
+            .header { padding: 2rem 1rem; }
+            .header h1 { font-size: 1.5rem; }
+            .container { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="max-width:860px;margin:0 auto;">
+            <h1>AIGCleaner Documentation</h1>
+            <p>Developer resources for the AI text processing platform. Detect AI-generated content, rewrite text for human-like quality, and enhance academic writing.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <span class="badge">v2.0 Stable</span>
+
+        <h2>Overview</h2>
+        <p>AIGCleaner is an AI-powered text processing platform designed for content creators, academic researchers, and enterprises. It provides APIs for AIGC detection, intelligent text rewriting, and style enhancement. Visit the official platform at <a href="https://aigcleaner.com">aigcleaner.com</a> to explore the full suite of tools.</p>
+
+        <h2>Core Features</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>AIGC Detection</h3>
+                <p>Analyze text to identify AI-generated content patterns with high accuracy. Returns a confidence score and detailed segment-level breakdown.</p>
+            </div>
+            <div class="card">
+                <h3>Text Rewriting</h3>
+                <p>Restructure AI-generated text to achieve a natural, human-like writing style while preserving the original meaning and context.</p>
+            </div>
+            <div class="card">
+                <h3>Academic Enhancement</h3>
+                <p>Improve academic papers with proper citation formatting, terminology consistency, and discipline-specific tone adjustments.</p>
+            </div>
+            <div class="card">
+                <h3>Batch Processing</h3>
+                <p>Process large volumes of text efficiently through the batch API. Supports async operations with webhook callbacks.</p>
+            </div>
+        </div>
+
+        <h2>Quick Start</h2>
+        <p>Get started with AIGCleaner in minutes. First, <a href="https://aigcleaner.com">create an account at aigcleaner.com</a> and obtain your API key from the dashboard.</p>
+
+        <h3>Installation</h3>
+<pre><code>pip install aigcleaner-sdk</code></pre>
+
+        <h3>Basic Usage</h3>
+<pre><code><span style="color:#89b4fa">from</span> aigcleaner <span style="color:#89b4fa">import</span> AIGClient
+
+client = AIGClient(api_key=<span style="color:#a6e3a1">"your-api-key"</span>)
+
+<span style="color:#6c7086"># Detect AI-generated content</span>
+result = client.detect(text=<span style="color:#a6e3a1">"Your text content here..."</span>)
+print(f<span style="color:#a6e3a1">"AI probability: {result.score:.2%}"</span>)
+
+<span style="color:#6c7086"># Rewrite text for human-like quality</span>
+rewritten = client.rewrite(
+    text=<span style="color:#a6e3a1">"Your AI-generated text..."</span>,
+    mode=<span style="color:#a6e3a1">"natural"</span>,   <span style="color:#6c7086"># Options: natural, academic, creative</span>
+    strength=<span style="color:#fab387">0.7</span>
+)
+print(rewritten.text)</code></pre>
+
+        <h3>API Endpoint Reference</h3>
+        <table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;">
+            <thead>
+                <tr style="border-bottom:2px solid #e1e4e8;text-align:left;">
+                    <th style="padding:0.5rem;">Method</th>
+                    <th style="padding:0.5rem;">Endpoint</th>
+                    <th style="padding:0.5rem;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom:1px solid #eaecef;">
+                    <td style="padding:0.5rem;"><span class="inline-code">POST</span></td>
+                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/detect</span></td>
+                    <td style="padding:0.5rem;">Detect AIGC content</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eaecef;">
+                    <td style="padding:0.5rem;"><span class="inline-code">POST</span></td>
+                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/rewrite</span></td>
+                    <td style="padding:0.5rem;">Rewrite text</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eaecef;">
+                    <td style="padding:0.5rem;"><span class="inline-code">POST</span></td>
+                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/enhance</span></td>
+                    <td style="padding:0.5rem;">Academic enhancement</td>
+                </tr>
+                <tr>
+                    <td style="padding:0.5rem;"><span class="inline-code">GET</span></td>
+                    <td style="padding:0.5rem;"><span class="inline-code">/api/v1/usage</span></td>
+                    <td style="padding:0.5rem;">Check API usage stats</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Response Format</h2>
+<pre><code>{
+  <span style="color:#a6e3a1">"status"</span>: <span style="color:#a6e3a1">"success"</span>,
+  <span style="color:#a6e3a1">"data"</span>: {
+    <span style="color:#a6e3a1">"score"</span>: <span style="color:#fab387">0.87</span>,
+    <span style="color:#a6e3a1">"label"</span>: <span style="color:#a6e3a1">"ai_generated"</span>,
+    <span style="color:#a6e3a1">"segments"</span>: [
+      { <span style="color:#a6e3a1">"text"</span>: <span style="color:#a6e3a1">"..."</span>, <span style="color:#a6e3a1">"score"</span>: <span style="color:#fab387">0.92</span>, <span style="color:#a6e3a1">"label"</span>: <span style="color:#a6e3a1">"ai"</span> },
+      { <span style="color:#a6e3a1">"text"</span>: <span style="color:#a6e3a1">"..."</span>, <span style="color:#a6e3a1">"score"</span>: <span style="color:#fab387">0.31</span>, <span style="color:#a6e3a1">"label"</span>: <span style="color:#a6e3a1">"human"</span> }
+    ]
+  },
+  <span style="color:#a6e3a1">"usage"</span>: { <span style="color:#a6e3a1">"characters"</span>: <span style="color:#fab387">1240</span> }
+}</code></pre>
+
+        <div class="cta-box">
+            <p style="font-size:1rem;color:#24292e;font-weight:500;">Ready to get started?</p>
+            <p style="font-size:0.9rem;color:#444d56;">Create a free account and start processing text with AIGCleaner today.</p>
+            <a href="https://aigcleaner.com">Sign Up at aigcleaner.com</a>
+        </div>
+
+        <h2>Rate Limits & Pricing</h2>
+        <p>Free tier includes 10,000 characters per month. For higher limits and advanced features, check the <a href="https://aigcleaner.com">pricing plans at aigcleaner.com</a>.</p>
+        <ul>
+            <li><strong>Free:</strong> 10,000 chars/month, 10 req/min</li>
+            <li><strong>Pro:</strong> 500,000 chars/month, 60 req/min</li>
+            <li><strong>Enterprise:</strong> Custom limits, priority support</li>
+        </ul>
+
+        <h2>Support</h2>
+        <p>For technical questions and bug reports, visit the <a href="https://aigcleaner.com">AIGCleaner support center</a>. We typically respond within 24 hours on business days.</p>
+    </div>
+
+    <div class="footer">
+        <p>AIGCleaner Documentation &middot; <a href="https://aigcleaner.com">aigcleaner.com</a></p>
+    </div>
+</body>
+</html>
